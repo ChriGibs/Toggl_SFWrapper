@@ -111,7 +111,7 @@ public with sharing class Toggl_Utilities {
         public List<TimeJSONWrapper> data;
     }
 
-    public static Set<String> GetAllTimeIds(List<TimeJSONWrapper> timeWrappers){
+    public static Set<String> GetAllTaskIds(List<TimeJSONWrapper> timeWrappers){
 
         Set<String> returnSet = new Set<String>();
         for(TimeJSONWrapper curWrap : timeWrappers){
@@ -121,6 +121,21 @@ public with sharing class Toggl_Utilities {
             }
 
             returnSet.add(curWrap.tid);
+        }
+
+        return returnSet;
+    }
+
+    public static Set<String> GetAllTimeIds(List<TimeJSONWrapper> timeWrappers){
+
+        Set<String> returnSet = new Set<String>();
+        for(TimeJSONWrapper curWrap : timeWrappers){
+
+            if(String.isEmpty(curWrap.id)){
+                continue;
+            }
+
+            returnSet.add(curWrap.id);
         }
 
         return returnSet;
